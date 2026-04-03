@@ -1,10 +1,10 @@
 import "./CheckoutPage.css";
 import CheckoutHeader from "./CheckoutHeader";
 
-function CheckoutPage() {
+function CheckoutPage({ cartItems }) {
   return (
     <>
-      <CheckoutHeader />
+      <CheckoutHeader cartItems={cartItems} />
       <link rel="icon" type="image/svg+xml" href="cart-favicon.png" />
       <title>Checkout</title>
 

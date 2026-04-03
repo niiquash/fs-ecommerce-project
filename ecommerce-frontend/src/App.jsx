@@ -17,7 +17,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage cartItems={cart} />} />
-      <Route path="/checkout" element={<CheckoutPage />} />
+      <Route path="/checkout" element={<CheckoutPage cartItems={cart} />} />
       <Route path="/orders" element={<OrdersPage cartItems={cart} />} />
       <Route path="/tracking" element={<TrackingPage />} />
     </Routes>
