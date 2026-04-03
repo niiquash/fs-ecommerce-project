@@ -1,8 +1,18 @@
 import Header from "../../components/Header";
-import { products } from "../../../starting-code/data/products";
+import axios from "axios";
+// import { products } from "../../../starting-code/data/products";
+import { useState, useEffect } from "react";
 import "./HomePage.css";
 
 function HomePage() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/products").then((response) => {
+      setProducts(response.data);
+    });
+  }, []);
+
   const productsGrid = products.map((product) => (
     <div key={product.id} className="product-container">
       <div className="product-image-container">
@@ -50,6 +60,7 @@ function HomePage() {
       <button className="add-to-cart-button button-primary">Add to Cart</button>
     </div>
   ));
+
   return (
     <>
       <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
