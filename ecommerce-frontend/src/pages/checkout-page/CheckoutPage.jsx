@@ -1,23 +1,25 @@
 import "./CheckoutPage.css";
 import "./CheckoutHeader.css";
+import { Link } from "react-router";
 
 function CheckoutPage() {
   return (
     <>
+      <title>Checkout</title>
       <div className="checkout-header">
         <div className="header-content">
           <div className="checkout-header-left-section">
-            <a href="index.html">
+            <Link to="/">
               <img className="logo" src="images/logo.png" />
               <img className="mobile-logo" src="images/mobile-logo.png" />
-            </a>
+            </Link>
           </div>
 
           <div className="checkout-header-middle-section">
             Checkout (
-            <a className="return-to-home-link" href="index.html">
+            <Link className="return-to-home-link" to="/">
               3 items
-            </a>
+            </Link>
             )
           </div>
 

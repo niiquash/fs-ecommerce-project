@@ -1,8 +1,11 @@
+import Header from "../../components/Header";
 import "./HomePage.css";
 
 function HomePage() {
   return (
     <>
+      <title>Home</title>
+      <Header />
       <div className="home-page">
         <div className="products-grid">
           <div className="product-container">
