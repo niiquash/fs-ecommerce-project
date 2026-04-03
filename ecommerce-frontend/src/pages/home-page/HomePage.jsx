@@ -1,20 +1,14 @@
 import Header from "../../components/Header";
 import axios from "axios";
-// import { products } from "../../../starting-code/data/products";
 import { useState, useEffect } from "react";
 import "./HomePage.css";
 
-function HomePage() {
+function HomePage({ cartItems }) {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios.get("/api/products").then((response) => {
       setProducts(response.data);
-    });
-
-    axios.get("/api/cart-items").then((response) => {
-      setCart(response.data);
     });
   }, []);
 
@@ -70,7 +64,7 @@ function HomePage() {
     <>
       <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
       <title>Home</title>
-      <Header cartItems={cart} />
+      <Header cartItems={cartItems} />
       <div className="home-page">
         <div className="products-grid">{productsGrid}</div>
       </div>
