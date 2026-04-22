@@ -6,7 +6,7 @@ import { formatMoney } from "../../utils/money";
 import { useEffect, useState } from "react";
 
 function CheckoutPage({ cartItems }) {
-  const [deliveryOptions, setDeliveryOptions] = useState("free");
+  const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
 
   useEffect(() => {
@@ -16,12 +16,12 @@ function CheckoutPage({ cartItems }) {
       );
       setDeliveryOptions(response.data);
     };
-    getDeliveryOptionsData();
 
     const getPaymentSummaryData = async () => {
       const response = await axios.get("/api/payment-summary");
       setPaymentSummary(response.data);
     };
+    getDeliveryOptionsData();
     getPaymentSummaryData();
   }, []);
 
