@@ -6,7 +6,7 @@ import { formatMoney } from "../../utils/money";
 import { useEffect, useState } from "react";
 import DeliveryOptions from "./DeliveryOptions";
 
-function CheckoutPage({ cartItems }) {
+function CheckoutPage({ cartItems, loadCart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
 
@@ -24,7 +24,7 @@ function CheckoutPage({ cartItems }) {
     };
     getDeliveryOptionsData();
     getPaymentSummaryData();
-  }, []);
+  }, [cartItems]);
 
   console.log(deliveryOptions);
 
@@ -84,6 +84,7 @@ function CheckoutPage({ cartItems }) {
                       <DeliveryOptions
                         cartItem={cartItem}
                         deliveryOptions={deliveryOptions}
+                        loadCart={loadCart}
                       />
                     </div>
                   </div>
