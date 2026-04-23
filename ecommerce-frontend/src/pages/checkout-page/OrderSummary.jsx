@@ -6,6 +6,15 @@ const OrderSummary = ({ cartItem, loadCart }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [quantity, setQuantity] = useState(cartItem.quantity);
 
+  const updateCartItem = async () => {
+    isUpdating &&
+      (await axios.put(`/api/cart-items/${cartItem.productId}`, {
+        quantity: quantity,
+      }));
+    await loadCart();
+    setIsUpdating(!isUpdating);
+  };
+
   const deleteCartItem = async () => {
     await axios.delete(`/api/cart-items/${cartItem.productId}`);
     await loadCart();
@@ -31,6 +40,12 @@ const OrderSummary = ({ cartItem, loadCart }) => {
                   const newQuantity = Number(event.target.value);
                   setQuantity(newQuantity);
                 }}
+                onKeyDown={async (event) => {
+                  let pressedKey = event.key;
+                  pressedKey === "Enter"
+                    ? updateCartItem()
+                    : setQuantity(cartItem.quantity);
+                }}
               />
             ) : (
               <span className="quantity-label">{quantity}</span>
@@ -38,14 +53,7 @@ const OrderSummary = ({ cartItem, loadCart }) => {
           </span>
           <span
             className="update-quantity-link link-primary"
-            onClick={async () => {
-              isUpdating &&
-                (await axios.put(`/api/cart-items/${cartItem.productId}`, {
-                  quantity: quantity,
-                }));
-              await loadCart();
-              setIsUpdating(!isUpdating);
-            }}
+            onClick={updateCartItem}
           >
             Update
           </span>
